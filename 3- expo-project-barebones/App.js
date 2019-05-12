@@ -18,8 +18,5 @@ import App from './app/1_react-native/step_1';      // basic
 // import App from './app/2_expo/step_6';     // mapView
 // import App from './app/2_expo/step_7';     // image picker
 // import App from './app/2_expo/step_8';     // web view
-// import App from './app/2_expo/step_9';    // video
-// import App from './app/2_expo/step_10';    // push notifications
 
 export default App;
-

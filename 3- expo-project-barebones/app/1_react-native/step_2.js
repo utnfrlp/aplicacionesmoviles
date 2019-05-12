@@ -21,7 +21,7 @@ class App extends React.Component {
         <View style={[styles.section, { flex: 1 }]}>
           <Image
             style={styles.logo}
-            // source={{ uri: 'http://i.imgur.com/GfAe1bp.png' }}
+            // source={{ uri: 'https://user-images.githubusercontent.com/7065401/57584792-c1c00400-74b5-11e9-923d-b67ed50acd22.png' }}
             source={require('../../assets/icon.png')}
           />
 
