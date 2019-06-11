@@ -4,8 +4,12 @@
     "description": "A playground for learning CSS flexbox",
     "slug": "flexbox-playground",
     "privacy": "public",
-    "sdkVersion": "30.0.0",
-    "platforms": ["ios", "android"],
+    "sdkVersion": "33.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

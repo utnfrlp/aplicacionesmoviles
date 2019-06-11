@@ -1,18 +1,22 @@
 {
   "expo": {
-    "name": "raw_project",
+    "name": "Expo barebones project",
     "description": "This project is really great.",
-    "slug": "raw_project",
+    "slug": "expo-barebones-project",
     "privacy": "public",
-    "sdkVersion": "30.0.0",
-    "platforms": ["ios", "android"],
+    "sdkVersion": "33.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/bg.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#FEF9B0"
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,6 +26,6 @@
     ],
     "ios": {
       "supportsTablet": true
-    },
+    }
   }
 }

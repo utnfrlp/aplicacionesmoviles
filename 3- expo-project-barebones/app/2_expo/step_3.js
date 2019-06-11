@@ -1,53 +1,68 @@
 import React from 'react';
 import {
-  View, Button, Image,
-  StatusBar, StyleSheet,
+  View, Text, StyleSheet,
+  Platform, Button,
 } from 'react-native';
 
-// https://docs.expo.io/versions/v16.0.0/sdk/blur-view.html
-import { BlurView } from 'expo';
+import { Updates } from 'expo';
+import Constants from 'expo-constants';
+import * as Localization from 'expo-localization';
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      showBlur: false,
+      locale: null,
     };
 
-    this.toggleBlur = this.toggleBlur.bind(this);
+    this.getLocale = this.getLocale.bind(this);
   }
 
-  toggleBlur() {
-    this.setState({
-      showBlur: !this.state.showBlur,
-    });
+  async getLocale() {
+    const { locale } = await Localization.getLocalizationAsync();
+
+    this.setState({ locale });
+  }
+
+  reload() {
+    Updates.reload();
   }
 
   render() {
-    const { showBlur } = this.state;
+    const {
+      appOwnership, expoVersion, deviceName,
+      deviceYearClass, isDevice, platform,
+    } = Constants;
+
+    const { locale } = this.state;
 
     return (
       <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={{ uri: 'https://s13.postimg.org/wflosfalj/logo.png' }}
-        />
+        <Text style={styles.title}>
+          expo-constants
+        </Text>
 
-        <BlurView
-          // default, light, dark
-          tint="dark"
-          intensity={showBlur ? 80 : 0}
-          style={[styles.blurContainer, StyleSheet.absoluteFill]}
-        >
-          <Button
-            onPress={this.toggleBlur}
-            color={showBlur ? 'red' : 'blue'}
-            title={showBlur ? 'Remove BlurView' : 'Add BlurView'}
-          />
-        </BlurView>
+        <Text>appOwnership: {appOwnership}</Text>
+        <Text>expoVersion: {expoVersion}</Text>
+        <Text>deviceName: {deviceName}</Text>
+        <Text>deviceYearClass: {deviceYearClass}</Text>
+        <Text>isDevice: {isDevice ? 'true' : 'false'}</Text>
+        { Platform.OS === 'ios' && <Text>platform: {platform.ios.platform}</Text> }
+        { Platform.OS === 'ios' && <Text>model: {platform.ios.model}</Text> }
 
-        <StatusBar hidden />
+        <Text style={styles.title}>
+          expo-localization
+        </Text>
+
+        <Button onPress={this.getLocale} title={'getLocalizationAsync'} />
+        <Text>locale: {locale}</Text>
+
+        <Text style={styles.title}>
+          expo.Updates.reload();
+        </Text>
+
+        <Button onPress={this.reload} title={'Reload app'} />
       </View>
     );
   }
@@ -56,17 +71,15 @@ class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    paddingTop: 50,
-  },
-  blurContainer: {
-    flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 20,
   },
-  image: {
-    width: 200,
-    height: 200,
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#2c3e50',
+    marginTop: 20,
+    marginBottom: 10,
   },
 });
 

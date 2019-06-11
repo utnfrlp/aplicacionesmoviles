@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { counterActions } from '../state/actions';
+import { addCounter, removeCounter } from '../state/actions';
 
 class Controls extends React.Component {
   render() {
@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = () => ({});
 
 const mapDispatchToProps = {
-  addCounter: counterActions.addCounter,
-  removeCounter: counterActions.removeCounter,
+  addCounter: addCounter,
+  removeCounter: removeCounter,
 };
 
 export default connect(

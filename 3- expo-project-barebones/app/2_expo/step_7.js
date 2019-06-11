@@ -1,95 +1,25 @@
 import React from 'react';
 import {
-  View, Text, Button,
-  Image, StyleSheet, Alert,
-  CameraRoll,
+  Button, Text, View, StyleSheet,
+  WebView, // https://facebook.github.io/react-native/docs/webview.html
 } from 'react-native';
 
-// https://docs.expo.io/versions/v16.0.0/sdk/imagepicker.html
-import { ImagePicker, Permissions } from 'expo';
+import * as WebBrowser from 'expo-web-browser';
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      hasPerm: true,
-      cancelled: true,
-      fileSize: null,
-      uri: null,
+      result: null,
     };
 
-    this.getCameraPerm = this.getCameraPerm.bind(this);
-    this.getCameraRollPerm = this.getCameraRollPerm.bind(this);
-    this.openCamera = this.openCamera.bind(this);
-    this.openImageLibrary = this.openImageLibrary.bind(this);
+    this.handlePressButtonAsync = this.handlePressButtonAsync.bind(this);
   }
 
-  componentDidMount() {
-    this.getCameraPerm();
-    this.getCameraRollPerm();
-  }
-
-  async getCameraPerm() {
-    const { status } = await Permissions.getAsync(Permissions.CAMERA);
-
-    if (status === 'denied') {
-      Alert.alert('Please allow Camera permission from your phone configuration');
-    } else {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA);
-
-      if (status === 'granted') {
-        this.setState({
-          hasPerm: true,
-        });
-      } else {
-        Alert.alert('Please allow Camera permission from your phone configuration');
-      }
-    }
-  }
-
-  async getCameraRollPerm() {
-    const { status } = await Permissions.getAsync(Permissions.CAMERA_ROLL);
-
-    if (status === 'denied') {
-      Alert.alert('Please allow Album permission from your phone configuration');
-    } else {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-
-      if (status === 'granted') {
-        this.setState({
-          hasPerm: true,
-        });
-      } else {
-        Alert.alert('Please allow Album permission from your phone configuration');
-      }
-    }
-  }
-
-  async openCamera() {
-    const options = {
-      allowsEditing: true,
-      aspect: [4, 3],
-    };
-
-    const { cancelled, fileSize, uri } = await ImagePicker.launchCameraAsync(options);
-
-    if (!cancelled) {
-      this.setState({ cancelled, fileSize, uri });
-    }
-  }
-
-  async openImageLibrary() {
-    const options = {
-      allowsEditing: true,
-      aspect: [4, 3],
-    };
-
-    const { cancelled, fileSize, uri } = await ImagePicker.launchImageLibraryAsync(options);
-
-    if (!cancelled) {
-      this.setState({ cancelled, fileSize, uri });
-    }
+  async handlePressButtonAsync() {
+    const result = await WebBrowser.openBrowserAsync('https://www.google.com/');
+    this.setState({ result });
   }
 
   render() {
@@ -98,19 +28,27 @@ class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
-          Expo.ImagePicker
+          expo-web-browser
         </Text>
 
-        <Button onPress={this.openCamera} title={'Open camera'} />
-
-        <Button onPress={this.openImageLibrary} title={'Open image library'} />
-
-        { fileSize && <Text>size: {fileSize}</Text> }
-        { uri && <Image
-          source={{ uri }}
-          style={styles.image}
+        <Button
+          style={styles.paragraph}
+          title="Open WebBrowser"
+          onPress={this.handlePressButtonAsync}
         />
-        }
+
+        <Text>{this.state.result && JSON.stringify(this.state.result)}</Text>
+
+        <Text style={styles.title}>
+         React Native WebView
+       </Text>
+
+        <View style={styles.webviewContainer}>
+          <WebView
+            source={{ uri: 'https://www.google.com/' }}
+            scalesPageToFit
+          />
+        </View>
       </View>
     );
   }
@@ -129,9 +67,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 10,
   },
-  image: {
-    width: 200,
-    height: 200,
+  webviewContainer: {
+    height: 450,
+    borderColor: '#ddd',
+    borderWidth: 2,
+    borderRadius: 5,
   },
 });
 

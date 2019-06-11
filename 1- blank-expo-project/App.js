@@ -1,76 +1,29 @@
 import React from 'react';
-import { Text, View, Button, Image, StyleSheet } from 'react-native';
-import Header from './components/Header';
+import { StyleSheet, Text, View } from 'react-native';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Text style={{fontSize: 42}}>
+        ✨
+      </Text>
 
-    this.state = {
-      count: 0
-    }
-
-    this.add = this.add.bind(this)
-    this.remove = this.remove.bind(this)
-  }
-
-  add() {
-    const { count } = this.state;
-
-    this.setState({
-      count: count + 1
-    })
-  }
-
-  remove() {
-    const { count } = this.state;
-
-    this.setState({
-      count: count - 1
-    })
-  }
-  
-  render() {
-    const { count } = this.state;
-
-    return (
-      <View style={styles.container}>
-        <Image source={require('./assets/icon.png')} style={styles.image} />
-
-        <Header title="My first app" subtitle="description of my app" />
-        
-        <Text style={{ color: '#FFF', fontSize: 36, fontWeight: '900', marginTop: 50 }}>
-          {count}
-        </Text>
-        
-        <Button
-          title="Sumar"
-          color="#27ae60"
-          onPress={this.add}
-          style={{ padding: 5 }}
-        />
-        <Button
-          title="Restar"
-          color="#e74c3c"
-          onPress={this.remove}
-          style={{ padding: 5 }}
-        />
-      </View>
-    );
-  }
+      <Text style={{fontSize: 24, marginBottom: 20}}>
+        Mi primera app!
+      </Text>
+      
+      <Text>
+        Open up App.js to start working on your app!
+      </Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#333',
   },
-  image: {
-    width: 120,
-    height: 120,
-    borderRadius: 20,
-    marginBottom: 20
-  }
 });

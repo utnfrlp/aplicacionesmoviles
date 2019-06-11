@@ -1,94 +1,116 @@
 import React from 'react';
 import {
-  View, Text, StyleSheet, Alert
+  View, Text, Button,
+  Image, StyleSheet, Alert,
+  CameraRoll,
 } from 'react-native';
 
-// https://docs.expo.io/versions/v16.0.0/sdk/map-view.html
-// https://docs.expo.io/versions/v16.0.0/sdk/location.html
-import { Permissions, MapView, Location } from 'expo';
+import * as Permissions from 'expo-permissions';
+import * as ImagePicker from 'expo-image-picker';
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      latitude: 37.78825,
-      longitude: -122.4324,
+      hasPerm: true,
+      cancelled: true,
+      fileSize: null,
+      uri: null,
     };
 
-    this.getPositionPerm = this.getPositionPerm.bind(this);
+    this.getCameraPerm = this.getCameraPerm.bind(this);
+    this.getCameraRollPerm = this.getCameraRollPerm.bind(this);
+    this.openCamera = this.openCamera.bind(this);
+    this.openImageLibrary = this.openImageLibrary.bind(this);
   }
 
   componentDidMount() {
-    this.getPositionPerm();
+    this.getCameraPerm();
+    this.getCameraRollPerm();
   }
 
-  async getPositionPerm() {
-    const options = {
-      enableHighAccuracy: true,
-    };
-
-    const { status } = await Permissions.getAsync(Permissions.LOCATION);
+  async getCameraPerm() {
+    const { status } = await Permissions.getAsync(Permissions.CAMERA);
 
     if (status === 'denied') {
-      Alert.alert('Please allow Location permission from your phone configuration');
+      Alert.alert('Please allow Camera permission from your phone configuration');
     } else {
-      const { status } = await Permissions.askAsync(Permissions.LOCATION);
+      const { status } = await Permissions.askAsync(Permissions.CAMERA);
 
       if (status === 'granted') {
-        const response = await Location.getCurrentPositionAsync(options);
-
         this.setState({
-          latitude: response.coords.latitude,
-          longitude: response.coords.longitude,
+          hasPerm: true,
         });
+      } else {
+        Alert.alert('Please allow Camera permission from your phone configuration');
       }
     }
   }
 
+  async getCameraRollPerm() {
+    const { status } = await Permissions.getAsync(Permissions.CAMERA_ROLL);
+
+    if (status === 'denied') {
+      Alert.alert('Please allow Album permission from your phone configuration');
+    } else {
+      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+
+      if (status === 'granted') {
+        this.setState({
+          hasPerm: true,
+        });
+      } else {
+        Alert.alert('Please allow Album permission from your phone configuration');
+      }
+    }
+  }
+
+  async openCamera() {
+    const options = {
+      allowsEditing: true,
+      aspect: [4, 3],
+    };
+
+    const { cancelled, fileSize, uri } = await ImagePicker.launchCameraAsync(options);
+
+    if (!cancelled) {
+      this.setState({ cancelled, fileSize, uri });
+    }
+  }
+
+  async openImageLibrary() {
+    const options = {
+      allowsEditing: true,
+      aspect: [4, 3],
+    };
+
+    const { cancelled, fileSize, uri } = await ImagePicker.launchImageLibraryAsync(options);
+
+    if (!cancelled) {
+      this.setState({ cancelled, fileSize, uri });
+    }
+  }
+
   render() {
-    const { latitude, longitude } = this.state;
+    const { cancelled, fileSize, uri } = this.state;
 
     return (
       <View style={styles.container}>
         <Text style={styles.title}>
-          Expo.MapView
+          expo-image-picker
         </Text>
 
-        <MapView
-          style={{ flex: 1 }}
-          region={{
-            latitude,
-            longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        >
-          <MapView.Marker
-            coordinate={{
-              latitude,
-              longitude,
-            }}
-            title={'Title'}
-            description={'Description'}      
-          />
-          <MapView.Marker
-            coordinate={{
-              latitude: latitude + 0.005,
-              longitude: longitude + 0.005,
-            }}
-            title={'Title'}
-            description={'Description'}      
-          />
-          <MapView.Marker
-            coordinate={{
-              latitude: latitude - 0.005,
-              longitude: longitude - 0.01,
-            }}
-            title={'Title'}
-            description={'Description'}      
-          />
-        </MapView>
+        <Button onPress={this.openCamera} title={'Open camera'} />
+
+        <Button onPress={this.openImageLibrary} title={'Open image library'} />
+
+        { fileSize && <Text>size: {fileSize}</Text> }
+        { uri && <Image
+          source={{ uri }}
+          style={styles.image}
+        />
+        }
       </View>
     );
   }
@@ -98,14 +120,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     color: '#2c3e50',
-    marginTop: 70,
-    marginLeft: 10,
+    marginTop: 20,
     marginBottom: 10,
+  },
+  image: {
+    width: 200,
+    height: 200,
   },
 });
 

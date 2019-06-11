@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableHighlight, StyleSheet } from 'react-native';
-import { Util } from 'expo';
+import { Updates } from 'expo';
 
 class BackToMenu extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class BackToMenu extends React.Component {
 
   goToMenu() {
     // Go back anywhere
-    Util.reload();
+    Updates.reload();
   }
 
   render() {

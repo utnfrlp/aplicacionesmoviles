@@ -1,31 +1,31 @@
 {
   "name": "redux-barebones",
-  "version": "0.0.0",
-  "description": "Redux Barebones",
-  "author": null,
-  "private": true,
   "main": "node_modules/expo/AppEntry.js",
+  "description": "Redux Barebones",
   "scripts": {
-    "test": "jest"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
+    "test": "jest --watchAll"
   },
   "jest": {
-    "preset": "jest-expo",
-    "verbose": true
+    "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^30.0.1",
-    "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
+    "expo": "^33.0.0",
+    "react": "16.8.3",
+    "react-dom": "^16.8.6",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-33.0.0.tar.gz",
+    "react-native-web": "^0.11.4",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
-    "eslint": "^3.15.0",
-    "eslint-config-rmotr": "^0.0.8",
-    "eslint-plugin-react": "^6.10.0",
-    "enzyme": "^2.8.2",
-    "jest": "^19.0.2",
-    "jest-expo": "^0.4.0"
-  }
+    "babel-preset-expo": "^5.1.0",
+    "jest-expo": "^33.0.0"
+  },
+  "private": true
 }

@@ -1,57 +1,56 @@
 import React from 'react';
-import {
-  View, Text, StyleSheet,
-  Animated,
-} from 'react-native';
+import { View, StyleSheet, Button } from 'react-native';
 
-import { DangerZone } from 'expo';
-
-const { Lottie: Animation } = DangerZone;
+import { Audio } from 'expo-av';
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      progress: new Animated.Value(0),
+      sound: new Audio.Sound(),
     };
 
-    this.playAnimation = this.playAnimation.bind(this);
+    this.playSound = this.playSound.bind(this);
   }
 
   componentDidMount() {
-    this.playAnimation();
+    // Audio is disabled by default, so your app must enable it explicitly.
+    Audio.setIsEnabledAsync(true);
+
+    // More options
+    Audio.setAudioModeAsync({
+      allowsRecordingIOS: false,
+      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+      playsInSilentModeIOS: true,
+      shouldDuckAndroid: true,
+      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+      playThroughEarpieceAndroid: true,
+      staysActiveInBackground: true
+    });
   }
 
-  playAnimation() {
-    Animated.timing(this.state.progress, {
-      toValue: 1,
-      duration: 2000,
-    }).start(() => {
-      this.setState({ progress: new Animated.Value(0) });
+  async playSound() {
+    const { sound } = this.state;
+    const status = await sound.getStatusAsync();
 
-      this.playAnimation();
-    });
+    if (status.isLoaded) {
+      await sound.setPositionAsync(0);
+      await sound.playAsync();
+    } else {
+      await sound.loadAsync(require('../../assets/furrow.mp3'));
+      await sound.playAsync();
+    }
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>
-          Animation example using Lottie
-        </Text>
-
-        <View style={styles.animationContainer}>
-          <Animation
-            style={{
-              width: 350,
-              height: 150,
-            }}
-            source={require('../../assets/data.json')}
-            progress={this.state.progress}
-            speed={1}
-          />
-        </View>
+        <Button
+          color={'#16a085'}
+          onPress={this.playSound}
+          title="Play sound"
+        />
       </View>
     );
   }
@@ -62,16 +61,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#2c3e50',
-  },
-  animationContainer: {
-    backgroundColor: '#162b3b',
-    marginVertical: 50,
-    borderRadius: 5,
   },
 });
 

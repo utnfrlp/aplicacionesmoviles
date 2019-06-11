@@ -1,11 +1,14 @@
 {
   "expo": {
-    "name": "tabs-expo-project",
-    "description": "A very interesting project.",
-    "slug": "tabs-expo-project",
+    "name": "Ejemplo con tabs",
+    "slug": "ejemplo-tabs",
     "privacy": "public",
-    "sdkVersion": "30.0.0",
-    "platforms": ["ios", "android"],
+    "sdkVersion": "33.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",

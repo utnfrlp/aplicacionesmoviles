@@ -1,6 +1,6 @@
 import React from 'react';
-import { LinearGradient } from 'expo';
 import { StyleSheet, StatusBar } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient'
 import CalculatorResponse from './components/CalculatorResponse';
 import CalculatorButtonsContainer from './components/CalculatorButtonsContainer';
 

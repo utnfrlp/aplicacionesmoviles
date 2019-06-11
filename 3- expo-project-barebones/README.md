@@ -24,11 +24,53 @@ Barebones project demonstrating a basic React Native & Expo Project.
 9. **AsyncStorage**
 
 #### Expo SDK API components
-1. **Lottie** animation component
-2. Play a sound  with Audio.**Sound** component
-3. **BlurView** component
-4. **Constants** & **Util** components
-5. **DocumentPicker** component
-6. **MapView** & **Location** components
-7. **ImagePicker** component to access camera and image library
-8. **WebBrowser** & **WebView** components
+1. Play a sound  with Audio.**Sound** component
+2. **BlurView** component
+3. **Constants** & **Util** components
+4. **DocumentPicker** component
+5. **MapView** & **Location** components
+6. **ImagePicker** component to access camera and image library
+7. **WebBrowser** & **WebView** components
+
+## Instalación
+
+### Descargar NodeJS
+
+Descargar e instalar NodeJS desde el siguiente link: https://nodejs.org/en/
+
+
+### Instalar expo-cli
+
+#### Instalar utilizando `npm`:
+
+```
+npm install expo-cli --global
+```
+
+#### Instalar utilizando `yarn`:
+
+```
+npm install --global yarn
+
+yarn global add expo-cli
+```
+
+### Instalar dependencias
+
+#### Instalar utilizando `npm`:
+
+```
+npm install
+```
+
+#### Instalar utilizando `yarn`:
+
+```
+yarn install
+```
+
+### Inicializar proyecto
+
+```
+expo start
+```

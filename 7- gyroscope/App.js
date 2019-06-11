@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image} from 'react-native';
-import { Gyroscope } from 'expo';
+import { Gyroscope } from 'expo-sensors';
 
 class App extends React.Component {
   state = {

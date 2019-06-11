@@ -1,1 +1,1 @@
-export * as counterActions from './counter';
+export * from './counter';

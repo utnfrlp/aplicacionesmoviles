@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { counterActions } from '../state/actions';
+import { increaseCounter, decreaseCounter } from '../state/actions';
 
 class CounterContainer extends React.Component {
   renderCounter() {
@@ -87,8 +87,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  increaseCounter: counterActions.increaseCounter,
-  decreaseCounter: counterActions.decreaseCounter,
+  increaseCounter: increaseCounter,
+  decreaseCounter: decreaseCounter,
 };
 
 export default connect(

@@ -1,56 +1,52 @@
 import React from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import {
+  View, Button, Image,
+  StatusBar, StyleSheet,
+} from 'react-native';
 
-// https://docs.expo.io/versions/v16.0.0/sdk/audio.html
-import { Audio } from 'expo';
+import { BlurView } from 'expo-blur';
 
 class App extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      sound: new Audio.Sound(),
+      showBlur: false,
     };
 
-    this.playSound = this.playSound.bind(this);
+    this.toggleBlur = this.toggleBlur.bind(this);
   }
 
-  componentDidMount() {
-    // Audio is disabled by default, so your app must enable it explicitly.
-    Audio.setIsEnabledAsync(true);
-
-    // More options
-    Audio.setAudioModeAsync({
-      allowsRecordingIOS: false,
-      interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-      playsInSilentModeIOS: true,
-      shouldDuckAndroid: true,
-      interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-      playThroughEarpieceAndroid: true
+  toggleBlur() {
+    this.setState({
+      showBlur: !this.state.showBlur,
     });
   }
 
-  async playSound() {
-    const { sound } = this.state;
-    const status = await sound.getStatusAsync();
-
-    if (status.isLoaded) {
-      await sound.setPositionAsync(0);
-      await sound.playAsync();
-    } else {
-      await sound.loadAsync(require('../../assets/furrow.mp3'));
-      await sound.playAsync();
-    }
-  }
-
   render() {
+    const { showBlur } = this.state;
+
     return (
       <View style={styles.container}>
-        <Button
-          color={'#16a085'}
-          onPress={this.playSound}
-          title="Play sound"
+        <Image
+          style={styles.image}
+          source={{ uri: 'https://s13.postimg.org/wflosfalj/logo.png' }}
         />
+
+        <BlurView
+          // default, light, dark
+          tint="dark"
+          intensity={showBlur ? 80 : 0}
+          style={[styles.blurContainer, StyleSheet.absoluteFill]}
+        >
+          <Button
+            onPress={this.toggleBlur}
+            color={showBlur ? 'red' : 'blue'}
+            title={showBlur ? 'Remove BlurView' : 'Add BlurView'}
+          />
+        </BlurView>
+
+        <StatusBar hidden />
       </View>
     );
   }
@@ -60,7 +56,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    paddingTop: 50,
+  },
+  blurContainer: {
+    flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
+  },
+  image: {
+    width: 200,
+    height: 200,
   },
 });
 

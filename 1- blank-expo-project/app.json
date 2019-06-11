@@ -1,11 +1,14 @@
 {
   "expo": {
-    "name": "blank-expo-project",
-    "description": "This project is really great.",
-    "slug": "blank-expo-project",
+    "name": "Mi primera app",
+    "slug": "mi-primera-app",
     "privacy": "public",
-    "sdkVersion": "30.0.0",
-    "platforms": ["ios", "android"],
+    "sdkVersion": "33.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
