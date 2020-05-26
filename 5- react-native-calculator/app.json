@@ -1,8 +1,10 @@
 {
   "expo": {
-    "name": "Ejemplo con tabs",
-    "slug": "ejemplo-tabs",
+    "name": "react-native-calculator",
+    "description": "react Native Calculator",
+    "slug": "react-native-calculator",
     "privacy": "public",
+    "sdkVersion": "37.0.0",
     "platforms": [
       "ios",
       "android",
@@ -10,12 +12,6 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -24,9 +20,6 @@
     ],
     "ios": {
       "supportsTablet": true
-    },
-    "web": {
-      "favicon": "./assets/images/favicon.png"
     }
   }
 }

@@ -28,15 +28,14 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.getStartedContainer}>
-          <Text style={styles.getStartedText}>Get started by opening</Text>
+          <Text style={styles.getStartedText}>Open up the code for this screen:</Text>
 
-          <View
-            style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
+          <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
             <Text>screens/HomeScreen.js</Text>
           </View>
 
           <Text style={styles.getStartedText}>
-            Change this text and your app will automatically reload.
+            Change any of the text, save the file, and your app will automatically reload.
           </Text>
         </View>
 
@@ -57,7 +56,7 @@ export default function HomeScreen() {
         <View
           style={[styles.codeHighlightContainer, styles.navigationFilename]}>
           <Text style={styles.codeHighlightText}>
-            navigation/MainTabNavigator.js
+            navigation/BottomTabNavigator.js
           </Text>
         </View>
       </View>
@@ -84,7 +83,7 @@ function handleHelpPress() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f1c40f',
   },
   developmentModeText: {
     marginBottom: 20,
@@ -94,7 +93,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   contentContainer: {
-    paddingTop: 30,
+    backgroundColor: '#fff',
+    marginTop: 20,
   },
   welcomeContainer: {
     alignItems: 'center',
@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   tabBarInfoContainer: {
+    backgroundColor: 'rgba(255,255,255,0.8)',
     position: 'absolute',
     bottom: 0,
     left: 0,
@@ -146,7 +147,6 @@ const styles = StyleSheet.create({
       },
     }),
     alignItems: 'center',
-    backgroundColor: '#fbfbfb',
     paddingVertical: 20,
   },
   tabBarInfoText: {

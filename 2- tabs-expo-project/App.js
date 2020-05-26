@@ -1,13 +1,14 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 
-import AppNavigator from './navigation/AppNavigator';
+import AppNavigation from './navigation/AppNavigation';
 
 export default function App(props) {
   return (
     <View style={styles.container}>
       {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-      <AppNavigator />
+      
+      <AppNavigation />
     </View>
   );
 }

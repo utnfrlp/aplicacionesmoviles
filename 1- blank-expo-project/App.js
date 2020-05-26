@@ -8,11 +8,11 @@ export default function App() {
         ✨
       </Text>
 
-      <Text style={{fontSize: 24, marginBottom: 20}}>
+      <Text style={{fontSize: 28, fontWeight: '900', textTransform: 'uppercase', marginBottom: 20}}>
         Mi primera app!
       </Text>
       
-      <Text>
+      <Text >
         Open up App.js to start working on your app!
       </Text>
     </View>
@@ -22,7 +22,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'rgba(26, 188, 156, 0.5)',
     alignItems: 'center',
     justifyContent: 'center',
   },
