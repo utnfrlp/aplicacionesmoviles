@@ -1,7 +1,8 @@
 import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
-import { View, Text, StyleSheet } from 'react-native';
-import Counter from './components/Counter';
+import { View, ScrollView, Text, StyleSheet } from 'react-native';
+import Controls from './components/Controls';
+import CounterContainer from './components/CounterContainer';
 import store from './state/store';
 
 class App extends React.Component {
@@ -9,9 +10,15 @@ class App extends React.Component {
     return (
       <ReduxProvider store={store}>
         <View style={styles.container}>
-          <Text style={styles.title}> Async Redux </Text>
+          <Text style={styles.title}>
+            Redux
+          </Text>
 
-          <Counter />
+          <Controls />
+
+          <ScrollView style={styles.scrollViewContainer}>
+            <CounterContainer />
+          </ScrollView>
         </View>
       </ReduxProvider>
     );
@@ -31,6 +38,10 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     textAlign: 'center',
     marginTop: 20,
+  },
+
+  scrollViewContainer: {
+    flex: 1,
   },
 });
 

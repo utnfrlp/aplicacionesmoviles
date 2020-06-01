@@ -1,18 +1,19 @@
 import React from 'react';
+import { Provider as ReduxProvider } from 'react-redux';
 import { View, Text, StyleSheet } from 'react-native';
 import Counter from './components/Counter';
-
-// STORE
-import { store } from './state/counter';
+import store from './state/store';
 
 class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}> Basic Redux </Text>
+      <ReduxProvider store={store}>
+        <View style={styles.container}>
+          <Text style={styles.title}>Redux</Text>
 
-        <Counter store={store} />
-      </View>
+          <Counter />
+        </View>
+      </ReduxProvider>
     );
   }
 }
