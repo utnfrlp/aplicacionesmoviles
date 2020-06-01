@@ -6,7 +6,7 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}> Without Redux </Text>
+        <Text style={styles.title}> Sin Redux </Text>
 
         <Counter />
       </View>

@@ -1,41 +1,22 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-
-// ACTIONS
-import { increaseCounter, decreaseCounter } from '../state/counter';
+import { connect } from 'react-redux';
+import { increaseCounter, decreaseCounter } from '../state/actions';
 
 class Counter extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.store = props.store;
-
-    // GET STORE VALUE
-    this.state = {
-      counter: this.store.getState(),
-    };
-  }
-
-  componentDidMount() {
-    // SUBSCRIBE TO CHANGES
-    this.store.subscribe(() => this.setState({
-      counter: this.store.getState(),
-    }));
-  }
-
   render() {
-    const { counter } = this.state;
+    const { counter, increaseCounter, decreaseCounter } = this.props;
 
     return (
       <View style={styles.counterContainer}>
         <Text style={styles.counter}> { counter } </Text>
 
         <View style={styles.buttonsContainer}>
-          <TouchableOpacity style={styles.buttonAdd} onPress={() => this.store.dispatch(increaseCounter())} >
+          <TouchableOpacity style={styles.buttonAdd} onPress={() => increaseCounter()} >
             <Text style={styles.icon}>+</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.buttonRemove} onPress={() => this.store.dispatch(decreaseCounter())} >
+          <TouchableOpacity style={styles.buttonRemove} onPress={() => decreaseCounter()} >
             <Text style={styles.icon}>-</Text>
           </TouchableOpacity>
         </View>
@@ -91,4 +72,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Counter;
+const mapStateToProps = state => ({
+  counter: state,
+});
+
+const mapDispatchToProps = {
+  increaseCounter: increaseCounter,
+  decreaseCounter: decreaseCounter,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Counter);
