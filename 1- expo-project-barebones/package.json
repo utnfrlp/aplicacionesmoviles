@@ -1,0 +1,40 @@
+{
+  "name": "expo-project-barebones",
+  "main": "node_modules/expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject",
+    "test": "jest --watchAll"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.13.0",
+    "expo": "^41.0.0",
+    "expo-av": "~9.1.2",
+    "expo-blur": "~9.0.3",
+    "expo-camera": "~11.0.2",
+    "expo-document-picker": "~9.1.2",
+    "expo-image-picker": "~10.1.4",
+    "expo-localization": "~10.1.0",
+    "expo-location": "~12.0.4",
+    "expo-permissions": "~12.0.1",
+    "expo-updates": "~0.5.4",
+    "expo-web-browser": "~9.1.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
+    "react-native-maps": "0.27.1",
+    "react-native-web": "~0.13.12",
+    "react-native-webview": "11.2.3"
+  },
+  "devDependencies": {
+    "@babel/core": "~7.9.0",
+    "babel-preset-expo": "8.3.0"
+  },
+  "private": true
+}
