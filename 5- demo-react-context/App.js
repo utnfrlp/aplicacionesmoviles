@@ -1,29 +1,31 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Usuario from "./components/Usuario";
-import Contador from "./components/Contador";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import UsuarioContext from "./contexts/usuario-context";
 import { ContadorContextProvider } from "./contexts/contador-context";
+import Usuario from "./components/Usuario";
+import Contador from "./components/Contador";
 
-const App = () => {
+export default function App() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Demo React Context</Text>
+      <Text style={styles.titulo}>Demo Context</Text>
 
-      <Usuario />
+      <ScrollView>
+        <ContadorContextProvider>
+          <UsuarioContext.Provider value={{ nombre: "Juan", edad: 20 }}>
+            <Usuario />
+            <Usuario />
+          </UsuarioContext.Provider>
 
-      <UsuarioContext.Provider value={{ nombre: "Juan", edad: 24 }}>
-        <Usuario />
-      </UsuarioContext.Provider>
+          <Usuario />
+          <Usuario />
 
-      {/* <ContadorContextProvider>
-        <Contador />
-      </ContadorContextProvider> */}
+          <Contador />
+        </ContadorContextProvider>
+      </ScrollView>
     </View>
   );
-};
-
-export default App;
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -31,11 +33,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    paddingVertical: 80,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 700,
-    textDecorationLine: "underline",
-    marginBottom: 40,
+  titulo: {
+    fontSize: 32,
+    fontWeight: "500",
+    marginBottom: 30,
   },
 });

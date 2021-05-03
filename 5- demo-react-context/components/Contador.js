@@ -4,12 +4,12 @@ import ContadorContext from "../contexts/contador-context";
 
 const Contador = () => {
   const valoresContext = useContext(ContadorContext);
-  const { contador, setContador } = valoresContext;
+  const { valor, sumar } = valoresContext;
 
   return (
     <View style={styles.container}>
-      <Text style={styles.counter}>{contador}</Text>
-      <Button title="Sumar" onPress={() => setContador(contador + 1)} />
+      <Text style={styles.counter}>{valor}</Text>
+      <Button title="Sumar" onPress={sumar} />
     </View>
   );
 };
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     color: "white",
     fontSize: 24,
-    fontWeight: 900,
+    fontWeight: "900",
     padding: 30,
   },
 });

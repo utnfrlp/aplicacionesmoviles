@@ -1,37 +1,40 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useContext } from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
 import UsuarioContext from "../contexts/usuario-context";
+import ContadorContext from "../contexts/contador-context";
 
-const Usuario = () => {
+const Usuario = (props) => {
+  const usuarioContext = useContext(UsuarioContext);
+  const contadorContext = useContext(ContadorContext);
+  console.log(usuarioContext);
+  console.log(contadorContext);
+
   return (
-    <UsuarioContext.Consumer>
-      {(valoresContext) => (
-        <View style={styles.container}>
-          {valoresContext ? (
-            <View style={styles.contextBox}>
-              <Text>Nombre: {valoresContext.nombre}</Text>
-              <Text>Edad: {valoresContext.edad}</Text>
-            </View>
-          ) : (
-            <Text>Sin datos del usuario...</Text>
-          )}
-        </View>
+    <View style={styles.box}>
+      {usuarioContext && (
+        <>
+          <Text style={styles.usuario}>Nombre: {usuarioContext.nombre}</Text>
+          <Text style={styles.usuario}>Edad: {usuarioContext.edad}</Text>
+        </>
       )}
-    </UsuarioContext.Consumer>
+
+      <Text>Contador: {contadorContext.valor}</Text>
+
+      <Button onPress={contadorContext.sumar} title="Sumar" color="red" />
+      <Button onPress={contadorContext.restar} title="Restar" color="blue" />
+      <Button onPress={contadorContext.reset} title="Reset" color="green" />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#eee",
-    alignItems: "stretch",
-    justifyContent: "center",
-    margin: 5,
-  },
-  contextBox: {
-    backgroundColor: "limegreen",
-    border: "3px dashed #333",
+  box: {
+    backgroundColor: "#ddd",
     padding: 20,
+    marginBottom: 10,
+  },
+  usuario: {
+    fontWeight: "700",
   },
 });
 
