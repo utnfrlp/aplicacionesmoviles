@@ -6,7 +6,7 @@ import DrawerScreen1 from "../screens/DrawerScreen1";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigationDemo = function () {
+const DrawerNavigationDemo = () => {
   return (
     <Drawer.Navigator initialRouteName="Drawer2">
       <Drawer.Screen

@@ -1,14 +1,14 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import MenuScreen from "../screens/MenuScreen";
-import StackNavigationDemo from "./StackNavigationDemo";
-import TabNavigationDemo from "./TabNavigationDemo";
-import DrawerNavigationDemo from "./DrawerNavigationDemo";
+import MenuScreen from "./screens/MenuScreen";
+import StackNavigationDemo from "./navigation/StackNavigationDemo";
+import TabNavigationDemo from "./navigation/TabNavigationDemo";
+import DrawerNavigationDemo from "./navigation/DrawerNavigationDemo";
 
 const Stack = createStackNavigator();
 
-const AppNavigation = function () {
+const App = () => {
   return (
     <NavigationContainer initialRouteName="Menu">
       <Stack.Navigator headerMode="none" mode="modal">
@@ -27,4 +27,4 @@ const AppNavigation = function () {
   );
 };
 
-export default AppNavigation;
+export default App;

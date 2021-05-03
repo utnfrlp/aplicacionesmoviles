@@ -6,7 +6,7 @@ import BackToMenu from "../components/BackToMenu";
 
 const Stack = createStackNavigator();
 
-const StackNavigationDemo = function () {
+const StackNavigationDemo = () => {
   return (
     <Stack.Navigator initialRouteName="StackScreen2">
       <Stack.Screen

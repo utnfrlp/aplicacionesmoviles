@@ -6,7 +6,7 @@ import TabScreen1 from "../screens/TabScreen1";
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigationDemo = function () {
+const TabNavigationDemo = () => {
   return (
     <Tab.Navigator
       initialRouteName="Tab2"
