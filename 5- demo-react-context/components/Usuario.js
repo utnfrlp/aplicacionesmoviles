@@ -11,6 +11,8 @@ const Usuario = (props) => {
 
   return (
     <View style={styles.box}>
+      <Text>Componente "Usuario"</Text>
+
       {usuarioContext && (
         <>
           <Text style={styles.usuario}>Nombre: {usuarioContext.nombre}</Text>

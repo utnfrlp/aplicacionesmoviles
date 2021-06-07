@@ -1,5 +1,11 @@
 import React, { useState, createContext } from "react";
 
+// a diferencia de nuestro contexto de Usuario, ahora lo encapsularemos
+// y definiremos aquí mismo el valor inicial.
+// Luego en App.js lo invocaremos sin necesidad de inicializarlo.
+
+// Todas las modificaciones de Contador serán definidas desde aquí: sumar, restar, reset, etc.
+
 const ContadorContext = createContext();
 
 export default ContadorContext;

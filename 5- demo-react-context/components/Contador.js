@@ -8,6 +8,7 @@ const Contador = () => {
 
   return (
     <View style={styles.container}>
+      <Text>Componente "Contador"</Text>
       <Text style={styles.counter}>{valor}</Text>
       <Button title="Sumar" onPress={sumar} />
     </View>
@@ -19,6 +20,7 @@ const styles = StyleSheet.create({
     alignItems: "stretch",
     justifyContent: "center",
     marginTop: 60,
+    marginBottom: 20,
   },
   counter: {
     backgroundColor: "black",
