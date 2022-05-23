@@ -20,7 +20,7 @@ const App = () => {
 
         <Text style={styles.textLarge}>{title}</Text>
 
-        <Text style={styles.textSmall}>Mi primera aplicación</Text>
+        <Text style={styles.textSmall}>Mi primera aplicación, parte 2</Text>
       </View>
     </View>
   );

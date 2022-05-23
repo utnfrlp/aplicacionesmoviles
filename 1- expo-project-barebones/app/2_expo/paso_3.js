@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, Platform, Button } from "react-native";
 
 import Constants from "expo-constants";
+import * as Device from "expo-device";
 import * as Localization from "expo-localization";
 
 const App = () => {
@@ -13,14 +14,7 @@ const App = () => {
     setLocale(locale);
   };
 
-  const {
-    appOwnership,
-    expoVersion,
-    deviceName,
-    deviceYearClass,
-    isDevice,
-    platform,
-  } = Constants;
+  const { appOwnership, expoVersion, deviceName } = Constants;
 
   return (
     <View style={styles.container}>
@@ -29,10 +23,18 @@ const App = () => {
       <Text>appOwnership: {appOwnership}</Text>
       <Text>expoVersion: {expoVersion}</Text>
       <Text>deviceName: {deviceName}</Text>
-      <Text>deviceYearClass: {deviceYearClass}</Text>
-      <Text>isDevice: {isDevice ? "true" : "false"}</Text>
-      {Platform.OS === "ios" && <Text>platform: {platform.ios.platform}</Text>}
-      {Platform.OS === "ios" && <Text>model: {platform.ios.model}</Text>}
+
+      <Text style={styles.title}>expo-device</Text>
+
+      <Text>isDevice: {Device.isDevice ? "true" : "false"}</Text>
+      <Text>brand: {Device.brand}</Text>
+      <Text>manufacturer: {Device.manufacturer}</Text>
+      <Text>modelName: {Device.modelName}</Text>
+      <Text>modelId: {Device.modelId}</Text>
+      <Text>osName: {Device.osName}</Text>
+      <Text>osVersion: {Device.osVersion}</Text>
+      <Text>deviceYearClass: {Device.deviceYearClass}</Text>
+      <Text>totalMemory: {Device.totalMemory}</Text>
 
       <Text style={styles.title}>expo-localization</Text>
 

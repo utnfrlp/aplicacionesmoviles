@@ -34,7 +34,7 @@ const App = () => {
 
         <Text style={styles.textLarge}>{title}</Text>
 
-        <Text style={styles.textSmall}>Mi primera aplicación</Text>
+        <Text style={styles.textSmall}>Mi primera aplicación, parte 3</Text>
       </View>
 
       <View style={styles.section}>

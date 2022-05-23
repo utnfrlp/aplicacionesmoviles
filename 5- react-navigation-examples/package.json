@@ -1,6 +1,7 @@
 {
-  "name": "expo-project-barebones",
+  "name": "react-navigation-examples",
   "main": "node_modules/expo/AppEntry.js",
+  "description": "Examples to setup a project with react-navigation",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -13,25 +14,22 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@react-native-async-storage/async-storage": "~1.17.3",
+    "@react-native-community/masked-view": "0.1.10",
+    "@react-navigation/bottom-tabs": "^5.3.1",
+    "@react-navigation/drawer": "^5.8.1",
+    "@react-navigation/native": "^5.2.1",
+    "@react-navigation/stack": "^5.2.16",
     "expo": "^45.0.0",
-    "expo-av": "~11.2.3",
-    "expo-blur": "~11.1.0",
-    "expo-camera": "~12.2.0",
-    "expo-device": "^4.2.0",
-    "expo-document-picker": "~10.2.1",
-    "expo-image-picker": "~13.1.1",
-    "expo-localization": "~13.0.0",
-    "expo-location": "~14.2.2",
-    "expo-permissions": "~13.2.0",
     "expo-updates": "~0.13.1",
-    "expo-web-browser": "~10.2.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
-    "react-native-maps": "0.30.2",
+    "react-native-gesture-handler": "~2.2.1",
+    "react-native-reanimated": "~2.8.0",
+    "react-native-safe-area-context": "4.2.4",
+    "react-native-screens": "~3.11.1",
     "react-native-web": "0.17.7",
-    "react-native-webview": "11.18.1"
+    "react-navigation": "^3.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

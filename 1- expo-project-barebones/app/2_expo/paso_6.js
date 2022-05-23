@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Button, Image, StyleSheet, Alert } from "react-native";
 
 import * as ImagePicker from "expo-image-picker";
-import { Camera } from "expo-camera";
+import { Camera, CameraType } from "expo-camera";
 
 const App = () => {
   const [hasPerm, setHasPerm] = useState(true);
@@ -11,14 +11,14 @@ const App = () => {
   const [camera, setCamera] = useState(null);
 
   const getCameraPerm = async () => {
-    const { status } = await Camera.getPermissionsAsync();
+    const { status } = await Camera.getCameraPermissionsAsync();
 
     if (status === "denied") {
       Alert.alert(
         "Please allow Camera permission from your phone configuration"
       );
     } else {
-      const { status } = await Camera.requestPermissionsAsync();
+      const { status } = await Camera.requestCameraPermissionsAsync();
 
       if (status === "granted") {
         setHasPerm(true);
@@ -38,9 +38,8 @@ const App = () => {
         "Please allow Album permission from your phone configuration"
       );
     } else {
-      const {
-        status,
-      } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      const { status } =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
 
       if (status === "granted") {
         setHasPerm(true);
@@ -89,6 +88,7 @@ const App = () => {
           ref={(ref) => {
             setCamera(ref);
           }}
+          type={CameraType.back}
         />
       </View>
       {uri && <Image source={{ uri }} style={styles.image} />}
@@ -117,9 +117,8 @@ const styles = StyleSheet.create({
     height: 150,
   },
   image: {
-    width: 400,
-    height: 400,
-    border: "5px solid #2ecc71",
+    width: 250,
+    height: 250,
   },
 });
 
