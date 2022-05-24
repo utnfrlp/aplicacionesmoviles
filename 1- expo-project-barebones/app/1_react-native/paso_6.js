@@ -43,6 +43,7 @@ const App = () => {
           underlineColorAndroid={"transparent"}
           keyboardAppearance={"dark"}
           returnKeyType={"send"}
+          keyboardType="number-pad"
         />
       </View>
 

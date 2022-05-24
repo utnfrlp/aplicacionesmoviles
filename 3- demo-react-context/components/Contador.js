@@ -4,13 +4,15 @@ import ContadorContext from "../contexts/contador-context";
 
 const Contador = () => {
   const valoresContext = useContext(ContadorContext);
-  const { valor, sumar } = valoresContext;
+  console.log(valoresContext);
+  const { valor, sumar, reset } = valoresContext;
 
   return (
     <View style={styles.container}>
       <Text>Componente "Contador"</Text>
       <Text style={styles.counter}>{valor}</Text>
       <Button title="Sumar" onPress={sumar} />
+      <Button title="Limpiar" onPress={reset} />
     </View>
   );
 };

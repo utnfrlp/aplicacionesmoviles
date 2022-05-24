@@ -21,6 +21,7 @@ export default function App() {
 
         {/* <ContadorContextProvider>
           <Contador />
+          <Usuario />
         </ContadorContextProvider> */}
 
         {/* <ListaIngredientesContextProvider>
